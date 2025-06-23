@@ -3,7 +3,7 @@ import requests
 
 st.title("IGCSE AI Test - Working Model")
 
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
+API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
 API_KEY = st.secrets["huggingface"]["api_key"]
 headers = {"Authorization": f"Bearer {API_KEY}"}
 
