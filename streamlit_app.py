@@ -23,16 +23,18 @@ def query(prompt):
 
 # プロンプトの自動生成
 prompt = """
-Create ONE well-structured multiple choice question for IGCSE Physics Paper 4 on the topic of "Forces". The question must follow this format:
+Write ONE IGCSE Physics Paper 4-style multiple choice question on the topic "Forces".
 
-- Clearly written question statement (1-2 lines)
-- 4 options labeled A to D
+Structure:
+- 1 clearly written question
+- 4 answer choices (A to D)
 - Only one correct answer
-- Provide the correct option letter
-- Provide a brief, accurate explanation using IGCSE-level formulas
+- Clear marking: state the correct letter and give a short explanation using appropriate physics vocabulary
+- The question should assess both recall and application, and be accessible to students at different ability levels.
 
-Make sure the question is realistic and uses correct physics. Do not include unrelated explanations. Use clear and concise English.
+Use clear and concise scientific language. Follow IGCSE assessment standards.
 """
+
 
 st.code(prompt.strip(), language="markdown")
 
