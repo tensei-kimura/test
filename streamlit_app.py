@@ -20,7 +20,11 @@ def query(prompt):
         return {"error": str(e)}
 
 
-prompt = st.text_input("Enter your prompt", "What is the capital of France?")
+subject = st.selectbox("Select Subject", ["Physics", "Chemistry", "Biology"])
+topic = st.text_input("Topic", "Forces")
+question_type = st.selectbox("Question Type", ["Multiple Choice", "Short Answer", "Explanation"])
+
+prompt = f"Create a {question_type} IGCSE {subject} question on the topic '{topic}'. Include the answer and explanation."
 
 if st.button("Run"):
     result = query(prompt)
