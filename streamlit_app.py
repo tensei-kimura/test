@@ -7,7 +7,8 @@ st.set_page_config(page_title="IGCSE Science Question Generator", layout="center
 st.title("🧪 IGCSE Science AI Question Generator")
 
 # --- Hugging Face API 設定 ---
-API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
+# API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
+API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
 API_KEY = st.secrets["huggingface"]["api_key"]
 headers = {"Authorization": f"Bearer {API_KEY}"}
 
