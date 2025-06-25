@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 
-st.title("🧪 IGCSE Science Question Generator")
+st.title("🧪 IGCSE Science AI Question Generator")
 
-# Hugging Face API settings
+# Hugging Face API 設定
 API_URL = "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
 API_KEY = st.secrets["huggingface"]["api_key"]
 headers = {"Authorization": f"Bearer {API_KEY}"}
@@ -21,12 +21,20 @@ def query(prompt):
     except Exception as e:
         return {"error": str(e)}
 
-# 🔹 ユーザー入力インターフェース
+# ✅ ユーザー選択 UI
 subject = st.selectbox("Select Subject", ["Physics", "Chemistry", "Biology"])
-topic = st.text_input("Enter Topic (e.g., Forces, Acids and Bases)", "Forces")
-question_type = st.selectbox("Select Question Type", ["Multiple Choice", "Short Answer"])
 
-# 🔹 プロンプト生成
+topics_dict = {
+    "Physics": ["Forces", "Energy", "Motion", "Waves"],
+    "Chemistry": ["Acids and Bases", "Atomic Structure", "Chemical Reactions"],
+    "Biology": ["Enzymes", "Respiration", "Cell Structure"]
+}
+
+topic = st.selectbox("Select Topic", topics_dict[subject])
+
+question_type = st.radio("Choose Question Type", ["Multiple Choice", "Short Answer"])
+
+# ✅ プロンプト自動構築
 if question_type == "Multiple Choice":
     prompt = f"""
     Write ONE IGCSE {subject} Paper 4-style multiple choice question on the topic "{topic}".
@@ -53,16 +61,17 @@ else:
     Use clear and concise scientific language. Follow IGCSE assessment standards.
     """
 
-# 🔹 出力セクション
+# ✅ 実行＆表示
 if st.button("Generate Question"):
     result = query(prompt)
 
     if isinstance(result, list) and "generated_text" in result[0]:
         st.success("✅ Question Generated")
-        st.markdown("### 📘 Generated Question:")
+        st.markdown("### 📘 Output:")
         st.markdown(result[0]["generated_text"])
     elif "error" in result:
         st.error(result["error"])
     else:
         st.warning("⚠️ Unexpected output format:")
         st.json(result)
+
