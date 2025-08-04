@@ -4,7 +4,7 @@ import requests
 st.title("🧪 IGCSE Science Question Generator")
 
 # Hugging Face API設定
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-large"
+API_URL = "https://huggingface.co/moonshotai/Kimi-K2-Instruct"
 API_KEY = st.secrets["huggingface"]["api_key"]
 headers = {"Authorization": f"Bearer {API_KEY}"}
 
